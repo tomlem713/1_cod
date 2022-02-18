@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1643142073 source:c:\dane\5_programowanie\program_manage\1_cod\test\testgps\main.cpp
+	<iostream>
+	<string.h>
+	<fstream>
+	<string>
+	"testGPS.h"
+
+1643142031 source:c:\dane\5_programowanie\program_manage\1_cod\test\testgps\testgps.cpp
+	<iostream>
+	<string.h>
+	<fstream>
+	<string>
+	"testGPS.h"
+
+1643115144 c:\dane\5_programowanie\program_manage\1_cod\test\testgps\testgps.h
+	<iostream>
+	<string.h>
+	<fstream>
+	<string>
+

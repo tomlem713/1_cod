@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1643200807 source:c:\dane\5_programowanie\program_manage\1_cod\newfield\nfield.cpp
+	<iostream>
+	<fstream>
+	"nfield.h"
+
+1643196452 c:\dane\5_programowanie\program_manage\1_cod\newfield\nfield.h
+	<iostream>
+
+1643200686 source:c:\dane\5_programowanie\program_manage\1_cod\newfield\main.cpp
+	<iostream>
+	"nfield.h"
+	"info.h"
+
+1643192811 c:\dane\5_programowanie\program_manage\1_cod\newfield\info.h
+

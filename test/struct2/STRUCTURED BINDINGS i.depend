@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1643401718 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct\structured bindings i\main.cpp
+	<iostream>
+	<vector>
+
+1644503944 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct\main.cpp
+	<iostream>
+	<vector>
+	"classs.h"
+
+1644506135 c:\dane\5_programowanie\program_manage\1_cod\test\struct\classs.h
+	<iostream>
+	<vector>
+
+1644503925 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct\classs.cpp
+	<iostream>
+	<vector>
+	"classs.h"
+
+1644589449 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct2\classs.cpp
+	<iostream>
+	<vector>
+	"classs.h"
+
+1644588962 c:\dane\5_programowanie\program_manage\1_cod\test\struct2\classs.h
+	<iostream>
+	<vector>
+
+1644588333 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct2\main.cpp
+	<iostream>
+	<vector>
+	"classs.h"
+

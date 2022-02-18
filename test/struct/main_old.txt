@@ -1,0 +1,105 @@
+ver1
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+//10000000
+class Field
+{
+public:
+float latReference , longReference ;
+int ratioToInt;
+
+
+vector <int> latField ;
+vector <int> longField;
+
+
+Field(float,float, int, vector <int>, vector <int> );
+
+void loadVector();
+
+~Field();
+};
+
+Field::Field(float _latR=52.00, float _longR=17.00, int _ratioToInt=10000000, vector <int> _latField={1}, vector <int> _longField ={2}  )
+{
+    latReference=_latR;
+    longReference=_longR;
+    ratioToInt=_ratioToInt;
+    longField=_longField;
+    latField=_latField;
+}
+
+
+void Field ::loadVector ()
+{
+latReference=52.5459040;
+longReference=17.5455310;
+
+
+latField={0,-18462,-26357,-30925,4308,12007,3134,6788,-2216,-12264,-21529};
+longField={0,-69525,-31330,-124457,-77893,-4723,-68452,-137331,-72744,-71242,-62658};
+}
+
+
+
+
+
+class Range ::public Field
+{ 
+
+
+
+};
+
+
+
+
+
+
+
+
+Field::~Field()
+{
+    cout <<"To ja destuktor"<<endl;
+}
+
+
+
+
+int main()
+{
+    cout << "Hello world!" << endl;
+
+
+
+Field p1;
+p1.loadVector();
+
+
+cout << p1.latField[0] <<"  -0"  << endl;
+cout << p1.longField[0] <<"   -0"  << endl;
+
+
+cout << p1.latField[1] <<"   -1"  << endl;
+cout << p1.longField[1] <<"   -1"  << endl;
+
+cout << p1.latField[2] <<"   -2"  << endl;
+cout << p1.longField[2] <<"   -2"  << endl;
+
+int r1= p1.latField.size();
+int r2= p1.longField.size();
+
+cout <<r1<<"  1vvv"<<endl;
+cout <<r2<<"  2vvv"<<endl;
+
+
+
+
+
+
+  return 0;
+}

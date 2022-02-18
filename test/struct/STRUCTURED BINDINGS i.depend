@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1643401718 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct\structured bindings i\main.cpp
+	<iostream>
+	<vector>
+
+1645178561 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct\main.cpp
+	<iostream>
+	<vector>
+	"pointGPS.h"
+	"borderPoint.h"
+
+1644506135 c:\dane\5_programowanie\program_manage\1_cod\test\struct\classs.h
+	<iostream>
+	<vector>
+
+1645092615 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct\classs.cpp
+	<iostream>
+	<vector>
+	"classs.h"
+
+1645101569 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct\src\pointgps.cpp
+	"pointGPS.h"
+	<iostream>
+
+1645105012 c:\dane\5_programowanie\program_manage\1_cod\test\struct\include\pointgps.h
+
+1645178388 c:\dane\5_programowanie\program_manage\1_cod\test\struct\include\meshpoint.h
+	<PointGPS.h>
+	<iostream>
+	<vector>
+
+1645176068 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct\src\meshpoint.cpp
+	"meshPoint.h"
+	<vector>
+	<iostream>
+
+1645178804 c:\dane\5_programowanie\program_manage\1_cod\test\struct\include\borderpoint.h
+	<PointGPS.h>
+	<iostream>
+	<vector>
+
+1645178678 source:c:\dane\5_programowanie\program_manage\1_cod\test\struct\src\borderpoint.cpp
+	"borderPoint.h"
+	<vector>
+	<iostream>
+

@@ -1,0 +1,3 @@
+punkt
+linia
+wiele lini

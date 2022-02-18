@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1641460440 source:c:\dane\5_programowanie\program_manage\1_cod\file_in\file\main.cpp
+	<iostream>
+	<string>
+	<fstream>
+	<cstdlib>
+

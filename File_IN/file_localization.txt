@@ -1,0 +1,14 @@
+C:\Dane\5_Programowanie\Program_manage\IN
+
+K³ecko__most1.csv
+K³ecko__most2.csv
+Piekary_3.csv
+Piekary_3_a.csv
+Piekary_3_b.csv
+
+2_DL_A_1.waypoints
+DL_A_6.waypoints
+T_Grzybowo(V2)_ (3).waypoints
+T_Grzybowo_B  (4).waypoints
+T_Grzybowo_B  (13).waypoints
+test 2.waypoints
