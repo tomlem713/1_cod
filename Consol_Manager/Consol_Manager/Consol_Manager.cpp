@@ -7,6 +7,9 @@
 #include "PointGps.h"
 #include "MeshPoint.h"
 
+
+
+
 /*
 lat  1    52.5444   North Pólnoc  Y
 long 2     17.555   East wschód   X
@@ -30,10 +33,14 @@ int main()
     bord.PrintVector();
     std::cout << "  ---------" << std::endl;
 
-    int alfaGradualAngular = 10;
+    int alfaGradualAngular = 45;
 
     bord.FillPoint(alfaGradualAngular);  // przekazanie konto do metody
-    bord.PrintVector();
+    
+                                         
+                                         // bord.PrintVector();
+    std::cout << bord.vector_pt.size() << std::endl;
+    //bord.SaveToFile();
 
     //delete bord; 
     return 0;

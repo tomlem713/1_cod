@@ -6,6 +6,11 @@
 #include <cmath>
 #include <fstream>
 #include <cstdlib>
+#include <string>
+
+
+
+
 
 
 MeshPoint::MeshPoint()
@@ -87,19 +92,22 @@ void MeshPoint::FillPoint(int _alfaGradualAngular)
 	int alfaGradualAngular;
 	alfaGradualAngular = _alfaGradualAngular;
 
-	float a = 0.00014811;
-	float b = 0.00009;
+	float a = 0.0014811;
+	float b = 0.0009;
+
+	std::cout << std::setprecision(15) << alfaGradualAngular  << std::endl;
 
 	float Pi_m = 3.14159265;
 	float alfaGrad = ((alfaGradualAngular * Pi_m) / 180);
 	float tangAlfa = tan(alfaGrad);
 
 
+
 	float x = ((a * b) / (sqrt(b * b + ((a * a) / (tangAlfa * tangAlfa)))));
 	float y = ((a * b) / (sqrt(a * a + ((b * b) / (tangAlfa * tangAlfa)))));
 
-	std::cout << std::setprecision(15)  << x << std::endl;
-	std::cout << std::setprecision(15) <<  y << std::endl;
+	std::cout << std::setprecision(15)  << x <<"   -x  " << std::endl;
+	std::cout << std::setprecision(15) <<  y << "   -y  " << std::endl;
 
 	/// <summary>
 
@@ -145,26 +153,27 @@ void MeshPoint::FillPoint(int _alfaGradualAngular)
 	std::cout << "   -------" << std::endl;
 
 
-//wype³naie
+//wype³naie  do poprawy !!
 
+
+	float minLongPGpsT = minLongPGps;
 	
 	while (minLatPGps < maxLatPGps)
 	{
+		
+		minLongPGps = minLongPGpsT;
+		
 		while (minLongPGps < maxLongPGps)
 		{
-			minLatPGps=minLatPGps + y;
 			minLongPGps=minLongPGps + x;
-			//std::cout << std::setprecision(15) << minLatPGps << "  ";
-			//std::cout << std::setprecision(15) <<minLongPGps << std::endl;
-			
+
 			PointGps* pintTemp = new PointGps(minLatPGps, minLongPGps);
 			vector_pt.push_back(pintTemp);
-			
-			
-
 		}
+		
+		minLatPGps = minLatPGps + y;
 
-
+		
 
 
 	}
@@ -172,103 +181,51 @@ void MeshPoint::FillPoint(int _alfaGradualAngular)
 
 
 }
+
 
 void MeshPoint::SaveToFile()
 {
-	/*
-	refactor adres pliku
-	nazwa pliku - nazwa pola
+	int maxSizeFile = 1000;
+	int vecSize = vector_pt.size();
+	int lineNumberFile = 0;
 
-	
-	
-	*/
-	
-	
+	std::string adress0 = "C:\\Dane\\5_Programowanie\\Program_manage\\OUT\\0_test.waypoints";
 
-
-
-	
-	/*
-	int qDividing = 10;
-	int maxSizeFile = 500;
 	std::string fileName = "_test.waypoints";
+	int fileNumber= 0;
+	std::string adress = "C:\\Dane\\5_Programowanie\\Program_manage\\OUT\\";
+	
+	std::fstream plik;
+	plik.open(adress0, std::ios::out);   //| std::ios::app
+	plik << "QGC WPL 110" << std::endl;
 
-	int lineMumberFile = 0;
-	int fil_numer = 1;
-	std::string adress = "C:\\Dane\\5_Programowanie\\Program_manage\\1_cod\\Fil_Out\\1_test.waypoints";
-
-
-	longMax = "22.9614258";
-	longMin = "13.7768555";
-
-	latMax = "55.1788677";
-	latMin = "50.5553250";
-
-
-
-	longMax_i = gps_toInt(longMax);
-	longMin_i = gps_toInt(longMin);
-	latMax_i = gps_toInt(latMax);
-	latMin_i = gps_toInt(latMin);
-
-
-
-	int deltaLong = longMax_i - longMin_i;
-	int deltaLat = latMax_i - latMin_i;
-
-	int piece_deltaLong = deltaLong / qDividing;
-	int piece_deltaLat = deltaLat / qDividing;
-
-
-
-
-	fstream plik;
-	plik.open(adress, ios::out | ios::app);
-	plik << "QGC WPL 110" << endl;
-
-
-
-	for (int kkk = 0; kkk < qDividing; kkk++)
-
+	for (int kkk = 0; kkk < vecSize; kkk++)
 	{
 
-		for (int lll = 0; lll < qDividing; lll++)
+		if (lineNumberFile >= maxSizeFile)
 		{
+			plik.close();
+			fileNumber++;
+			lineNumberFile = 0;
 
-			if (lineMumberFile >= maxSizeFile)
-			{
-				plik.close();
-				fil_numer++;
-				lineMumberFile = 0;
-				adress = iterateFileName(adress, fil_numer, fileName);
-				cout << adress << endl;
-				plik.open(adress, ios::out | ios::app);
-				plik << "QGC WPL 110" << endl;
-			}
+			std::string fil_numerS = std::to_string(fileNumber);
+			std::string adressT = adress + fil_numerS + fileName;
+			std::cout << adress << std::endl;
+			plik.open(adressT, std::ios::out);
 
-
-
-			int ggLong = longMin_i + kkk * piece_deltaLong;
-			int ggLat = latMin_i + lll * piece_deltaLat;
-
-
-			plik << lineMumberFile << " 	0	3	16	0.00000000	0.00000000	0.00000000	0.00000000	 ";
-			plik << int_toGPS(ggLat) << "  ";
-			plik << int_toGPS(ggLong) << "	30.000000	1" << endl;
-
-			lineMumberFile++;
-
+			plik << "QGC WPL 110" << std::endl;
 		}
+					
+			plik << lineNumberFile << " 	0	3	16	0.00000000	0.00000000	0.00000000	0.00000000	 ";
+			plik << std::setprecision(15)<<vector_pt[kkk]->latPGps; // ustawienie dok³adnosci na wyjsciu
+			plik << "  ";
+			plik << std::setprecision(15)<<vector_pt[kkk]->longPGps;
+			plik << "	30.000000	1" << std::endl;
+			lineNumberFile++;
 	}
 
 	plik.close();
-
-	*/
-
-
-	
-
-
 }
+
 
 
