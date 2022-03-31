@@ -2,10 +2,10 @@
 class PointGps
 {
 public:
-	PointGps(double = 0.1, double = 0.1);
+	PointGps(double = 1.1, double = 2.2);
 	virtual ~PointGps();
 	
-	double latPGps;
+	double latPGps; 
 	double longPGps;
 
 

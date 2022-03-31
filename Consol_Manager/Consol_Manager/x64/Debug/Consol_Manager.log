@@ -1,2 +1,7 @@
 ﻿  Consol_Manager.cpp
-  Consol_Manager.vcxproj -> C:\Dane\5_Programowanie\Program_manage2\Consol_Manager\x64\Debug\Consol_Manager.exe
+  MeshPoint.cpp
+C:\Dane\5_Programowanie\Program_manage\1_cod\Consol_Manager\Consol_Manager\MeshPoint.cpp(130,34): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Dane\5_Programowanie\Program_manage\1_cod\Consol_Manager\Consol_Manager\MeshPoint.cpp(193,35): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Dane\5_Programowanie\Program_manage\1_cod\Consol_Manager\Consol_Manager\MeshPoint.cpp(313,32): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+  Generowanie kodu...
+  Consol_Manager.vcxproj -> C:\Dane\5_Programowanie\Program_manage\1_cod\Consol_Manager\x64\Debug\Consol_Manager.exe

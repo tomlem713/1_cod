@@ -8,7 +8,7 @@ class MeshPoint :
     public PointGps
 {
 public:
-    MeshPoint();
+    MeshPoint(int = 0);  /// 10000000 -wersja pierwsza
     virtual ~MeshPoint();
     void PrintVector();
     void LoadPoint();
@@ -20,7 +20,11 @@ public:
 
 //private:
     std::string nameField;
+    int square;
 
+    double latReference;
+    double longReference;
+  
 
 };
 

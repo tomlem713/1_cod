@@ -17,32 +17,24 @@ long 2     17.555   East wschód   X
 
 int main()
 {
-    std::cout << "Hello World!\n";
-
-    PointGps pppqw(111.1, 222.22);
-
-    std::cout << std::setprecision(15) << pppqw.latPGps <<"  lat"  << std::endl;
-    std::cout << std::setprecision(15) << pppqw.longPGps <<" long" << std::endl;
-
-
-     MeshPoint bord;
-
+    MeshPoint bord;
     std::cout << bord.nameField << "\n";
    
     bord.LoadPoint();
-    bord.PrintVector();
+   // bord.PrintVector();
     std::cout << "  ---------" << std::endl;
 
-    int alfaGradualAngular = 45;
+    int alfaGradualAngular = 10;  //45c totalny balagan
 
-    bord.FillPoint(alfaGradualAngular);  // przekazanie konto do metody
+    bord.FillPoint(alfaGradualAngular); 
     
-                                         
-                                         // bord.PrintVector();
-    std::cout << bord.vector_pt.size() << std::endl;
-    //bord.SaveToFile();
+           // ustawianie kolejności granicy tak aby punkty były pokolei
+          //przesuwanie geanicy o 1 m do środka                               
+                                        
+    //std::cout << bord.vector_pt.size() << std::endl;
+  /// bord.SaveToFile();
 
-    //delete bord; 
+   //delete bord; 
     return 0;
 }
 
