@@ -24,7 +24,9 @@ public:
 
     double latReference;
     double longReference;
-  
+
+    double lat10mTemp;
+    double long10mTemp;
 
 };
 

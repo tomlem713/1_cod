@@ -8,120 +8,108 @@
 #include <cstdlib>
 #include <string>
 
-double angleDictionary(int inAngele)
-{
-	
-	int inAngelChange = 0;
 
+
+PointGps* angleDictionary(int inAngele, double _latDeltaIn, double _longDeltaIn)
+
+{
+	int inAngelChange = 0;
+	int latPlusMinus = 0, longPlusMinus = 0;
+	
+	std::cout << inAngele << "  kont " << std::endl;
 
 	if (inAngele >= 0 && inAngele < 90)
 	{
-		inAngele = inAngelChange;
+		inAngelChange = inAngele;
+		latPlusMinus = 1,
+		longPlusMinus = 1;
 	}
-	else if (inAngele >= 90  && inAngele < 180)
+	else if (inAngele >= 90 && inAngele < 180)
 	{
-		inAngele =90- inAngelChange;
+		inAngelChange = 180-inAngele;
+		latPlusMinus = -1,
+		longPlusMinus = 1;
+
 	}
 	else if (inAngele >= 180 && inAngele < 270)
 	{
-		inAngele =  inAngelChange-180;
+		inAngelChange = inAngele - 180;
+		latPlusMinus = -1,
+		longPlusMinus = -1;
+
+
 	}
 	else if (inAngele >= 270 && inAngele <= 360)
 	{
-		inAngele = 180 - inAngelChange;
+		inAngelChange = 360-inAngele;
+		latPlusMinus = 1,
+		longPlusMinus = -1;
+
 	}
-
-	std::cout << inAngele << " kont po zmianie" << std::endl;
-
-	// 0 90C
-	//jeszcze do 90-180 
-	//180-360
 	
-	double OutAngle;
+	double OutAngle=0;
+	int positionTab = 0;
 	int tab[19] = { 90,82,74,66,59,52,46,41,36,31,27,23,19,16,12,9,6,3,0 };
-	int positionTab=0;
-	
+
 	for (int i = 0; i < 20; i++)
 	{
-		if (tab[i] < inAngele)
+		if (tab[i] < inAngelChange)
 		{
 			positionTab = i - 1;
 			break;
 		}
 	}
-	int angelTab =(int) tab[positionTab];
+	int angelTab = (int)tab[positionTab];
 
-	if (angelTab == inAngele)
+	if (angelTab == inAngelChange)
 	{
 		OutAngle = (double)(positionTab * 5);
 	}
 	else
 	{
 		double distanceAngelTab = (double)tab[positionTab] - tab[positionTab + 1];
-		double distanceAngel =(double) tab[positionTab] - inAngele;
-
-		/*
-		 cout <<pozTemp<<"  pozTemp"<<endl;
-		 cout <<powyzejTabeli<<"  odl w tabeli"<<endl;
-		 cout <<dystansKonta<<"  dystns konta  "<< dystansKonta+5  <<endl;
-		 cout <<powyzejTabeli<<" powyrzejw tabeli "<<endl;
-		 cout <<temp<< "   temp"<<endl;
-		*/
-
+		double distanceAngel = (double)tab[positionTab] - inAngelChange;
 		OutAngle = (positionTab * 5) + ((5 / distanceAngelTab) * distanceAngel);
 	}
 
-	return OutAngle;
-}
 
 
+	double _latDeltaOut;
+	double _longDeltaOut;
 
+	
+	int  _alfaGradualAngular = (int)OutAngle;
 
-
-
-
-
-
-
-
-
-
-double latAlfaDelata(double _alfaGradualAngular, double _latDeltaInt, double _longDeltaInt)
-{
-	double _latDeltaIntFOut;
-	double _latDeltaIntF = _latDeltaInt; ///Lat  North Pólnoc  Y -b
-	double _longDeltaIntF = _longDeltaInt; ///Long East wschód   X -a
-
-	if (_alfaGradualAngular == 0) { _latDeltaIntFOut = 0; }
-	else if (_alfaGradualAngular == 90) { _latDeltaIntFOut = _latDeltaIntF; }
+	
+	if (_alfaGradualAngular == 0)
+	{
+		_latDeltaOut= 0;
+		_longDeltaOut = _longDeltaIn;
+	}
+	else if (_alfaGradualAngular == 90)
+	{
+		_latDeltaOut = _latDeltaIn;
+		_longDeltaOut = 0;
+	}
 	else
 	{
 		double tangAlfa = tan((double)((_alfaGradualAngular * 3.14159265) / 180.0));
-		//std::cout << _alfaGradualAngular << "   ; kont alfa" << std::endl;
-		//std::cout << tangAlfa << "   ; kont tangalfa" << std::endl;
-		_latDeltaIntFOut = ((_latDeltaIntF * _longDeltaIntF) / (sqrt((_longDeltaIntF * _longDeltaIntF) + ((_latDeltaIntF * _latDeltaIntF) / (tangAlfa * tangAlfa)))));
+		_latDeltaOut = ((_latDeltaIn * _longDeltaIn) / (sqrt((_longDeltaIn * _longDeltaIn) + ((_latDeltaIn * _latDeltaIn) / (tangAlfa * tangAlfa)))));
+		_longDeltaOut = ((_latDeltaIn * _longDeltaIn) / (sqrt((_latDeltaIn * _latDeltaIn) + ((_longDeltaIn * _longDeltaIn) * (tangAlfa * tangAlfa)))));
 	}
 
-	return _latDeltaIntFOut;
+
+
+
+	_latDeltaOut /= (double)latPlusMinus;
+	_longDeltaOut /= (double)longPlusMinus;
+
+	
+	PointGps* pointDirection = new PointGps(_latDeltaOut, _longDeltaOut);
+	return pointDirection;
 }
 
 
-double longAlfaDelata(double _alfaGradualAngular, double _latDeltaInt, double _longDeltaInt)
-{
-	double _longDeltaIntFOut;
-	double _latDeltaIntF = (double)_latDeltaInt;
-	double _longDeltaIntF = (double)_longDeltaInt;
-
-	if (_alfaGradualAngular == 0) { _longDeltaIntFOut = _longDeltaIntF; }
-	else if (_alfaGradualAngular == 90) { _longDeltaIntFOut = 0; }
-	else
-	{
-		double tangAlfa = tan((double)((_alfaGradualAngular * 3.14159265) / 180.0));
-		_longDeltaIntFOut = ((_latDeltaIntF * _longDeltaIntF) / (sqrt((_latDeltaIntF * _latDeltaIntF) + ((_longDeltaIntF * _longDeltaIntF) * (tangAlfa * tangAlfa)))));
-	}
-
-	return _longDeltaIntFOut;
-}
 
 
 void findMaxMin(std::vector <PointGps*>& _vector_pt)
@@ -235,21 +223,16 @@ void MeshPoint::LoadPoint()
 
 void MeshPoint::FillPoint(int _alfaGradualAngular)
 {
-	double  latDelta = 0.000089932;  //a
-	double longDelta = 0.00014607;   //b
+	double  latDelta = 0.0000901;  //a
+	double longDelta = 0.00014907;   //b
 
+	auto ttt = vector_pt;
+	
 
-	double alfaCorrect = angleDictionary(_alfaGradualAngular);
-	double latDelta10m = latAlfaDelata(alfaCorrect, latDelta, longDelta);
-	double longDelta10m = longAlfaDelata(alfaCorrect, latDelta, longDelta);
+	
 
-	int _alfaGradualAngular2 = 90+_alfaGradualAngular;
-	double alfaCorrect2 = angleDictionary(_alfaGradualAngular2);
-	double latDelta10m2 = latAlfaDelata(alfaCorrect2, latDelta, longDelta);
-	double longDelta10m2 = longAlfaDelata(alfaCorrect2, latDelta, longDelta);
+	
 
-	//std::cout << std::setprecision(15) << latDelta10m * 100000 << ": dddddddddddddddd --lat delta" << std::endl;
-	//std::cout << std::setprecision(15) << longDelta10m * 100000 << ":   --long delta" << std::endl;
 
 	findMaxMin(vector_pt);
 
@@ -258,6 +241,10 @@ void MeshPoint::FillPoint(int _alfaGradualAngular)
 	std::cout << vector_pt[1]->latPGps << " max    " << vector_pt[1]->longPGps << std::endl;
 	/////////////////////////////////////////////////////
 
+	PointGps* pointDirection = angleDictionary(_alfaGradualAngular, latDelta, longDelta);
+	std::cout << pointDirection->latPGps << " :lat   long: " << pointDirection->longPGps << std::endl;
+	double longDelta10m = pointDirection->longPGps;
+	double latDelta10m = pointDirection->latPGps;
 
 
 	double latDeltaTemp = vector_pt[0]->latPGps;
@@ -273,30 +260,32 @@ void MeshPoint::FillPoint(int _alfaGradualAngular)
 	}
 
 
-	 
 
+	for (int j = 0; j < 40; j++)
+	{
+		_alfaGradualAngular = _alfaGradualAngular + 2;
 
-	 for (int i = 1; i < 10; i++)
-	 {
-		 longDeltaTemp = longDeltaTemp + longDelta10m2;
-		 latDeltaTemp = latDeltaTemp + latDelta10m2;
-
-		 PointGps* pintTemp = new PointGps(latDeltaTemp, longDeltaTemp);
-		 vector_pt.push_back(pintTemp);
-	 }
+		PointGps* pointDirection2 = angleDictionary(_alfaGradualAngular, latDelta, longDelta);
+		double longDelta10m2 = pointDirection2->longPGps;
+		double latDelta10m2 = pointDirection2->latPGps;
 
 
 
 
+		for (int i = 1; i < 5; i++)
+		{
+			longDeltaTemp = longDeltaTemp + longDelta10m2;
+			latDeltaTemp = latDeltaTemp + latDelta10m2;
 
-	double a_Lat;
-	double b_Long;
+			PointGps* pintTemp2 = new PointGps(latDeltaTemp, longDeltaTemp);
+			vector_pt.push_back(pintTemp2);
+		}
 
 
-	a_Lat = ((vector_pt[10]->latPGps) - (vector_pt[9]->latPGps));  //Lat  North Pólnoc  Y -b
-	b_Long = ((vector_pt[10]->longPGps) - (vector_pt[9]->longPGps));  //Long East wschód   X -a
-	double angle = (atan(a_Lat / b_Long) * 180.0 / 3.14159265);
-	std::cout << angle << "  :kont" << std::endl;
+
+	}
+
+
 
 
 

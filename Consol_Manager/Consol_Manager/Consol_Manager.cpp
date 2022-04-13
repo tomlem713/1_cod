@@ -24,7 +24,7 @@ int main()
    // bord.PrintVector();
     std::cout << "  ---------" << std::endl;
 
-    int alfaGradualAngular = 10;  //45c totalny balagan
+    int alfaGradualAngular = 80;  //45c totalny balagan
 
     bord.FillPoint(alfaGradualAngular); 
     
@@ -32,7 +32,7 @@ int main()
           //przesuwanie geanicy o 1 m do środka                               
                                         
     //std::cout << bord.vector_pt.size() << std::endl;
-  /// bord.SaveToFile();
+  bord.SaveToFile();
 
    //delete bord; 
     return 0;
